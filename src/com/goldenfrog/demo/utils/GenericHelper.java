@@ -3,15 +3,12 @@ package com.goldenfrog.demo.utils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
 import com.goldenfrog.demo.GoldenFrogDemoApplication;
-import com.goldenfrog.demo.location.LocationIdentifier;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -22,6 +19,7 @@ public class GenericHelper {
 	private static NetworkInfo networkInfo;
 	private static Calendar calendarObj = Calendar.getInstance();
 	private static SimpleDateFormat simpleDateFormatObj = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+	private static int markerCounter = 0;
 
 	public static boolean isNetworkConnected() {
 		boolean returnValue = false;
@@ -57,43 +55,6 @@ public class GenericHelper {
         });
 	}
 	
-	public static void setStartingPosition(LocationIdentifier locationInformationInput) {
-	    SharedPreferences settings = GoldenFrogDemoApplication.getContext().getSharedPreferences(Constants.LOCATION_FILE_NAME, 0);
-	    SharedPreferences.Editor editor = settings.edit();
-	    editor.putString("START_LATITUDE", ""+locationInformationInput.getLatitude());
-	    editor.putString("START_LONGITUDE", ""+locationInformationInput.getLongitude());
-	    editor.commit();
-	    editor.apply();
-	}
-	
-	public static LocationIdentifier getStartingPosition() {		
-	    SharedPreferences settings = GoldenFrogDemoApplication.getContext().getSharedPreferences(Constants.LOCATION_FILE_NAME, 0);
-	    double latitude = Double.parseDouble(settings.getString("START_LATITUDE", "0.00"));
-	    double longitude = Double.parseDouble(settings.getString("START_LONGITUDE", "0.00"));
-
-		return new LocationIdentifier(latitude, longitude);
-	}
-	
-	public static float getDistanceTravelledFromStartingPosition(LocationIdentifier currentPosition) {
-		return getDistanceBetweenLocations(currentPosition, getStartingPosition());
-	}
-	
-	public static float getDistanceBetweenLocations(LocationIdentifier positionA, LocationIdentifier positionB) {
-		float returnValue = 0;
-		
-		Location locA = new Location("Point_A");
-		locA.setLatitude(positionA.getLatitude());
-		locA.setLongitude(positionA.getLongitude());
-		
-		Location locB = new Location("Point_B");
-		locB.setLatitude(positionB.getLatitude());
-		locB.setLongitude(positionB.getLongitude());
-		
-		returnValue = locB.distanceTo(locA);
-		
-		return returnValue;
-	}
-	
 	public static String getCurrentTime() {
 		String currentDateTimeFormattedAsString = simpleDateFormatObj.format(calendarObj.getTime());
 		
@@ -102,6 +63,18 @@ public class GenericHelper {
 	
 	public static void forcefullyExitApplication() {
 		android.os.Process.killProcess(android.os.Process.myPid());
+	}
+	
+	public static BitmapDescriptor getMarkerColor() {
+		BitmapDescriptor returnValue;
+		returnValue = Constants.ODD_LOCATION_PIN_COLOR;
+		
+		++markerCounter;
+		if(markerCounter%2 == 0) {
+			returnValue = Constants.EVEN_LOCATION_PIN_COLOR;
+		}
+		
+		return returnValue;
 	}
 
 }

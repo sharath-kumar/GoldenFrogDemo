@@ -31,7 +31,7 @@ public class MyLocationUpdateBroadcastReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		LocationIdentifier updatedLocationTemp  = (LocationIdentifier) intent.getExtras().getSerializable("UPDATED_LOCATION");
 		
-		float distanceTravelledTemp = GenericHelper.getDistanceTravelledFromStartingPosition(updatedLocationTemp);
+		float distanceTravelledTemp = LocationUtils.getDistanceTravelledFromStartingPosition(updatedLocationTemp);
 		Log.d("LocationUpdateBroadcastReceiver.onReceive()", "distanceTravelledTemp: " + distanceTravelledTemp);
 		
 		if(Constants.isDebugMode) {

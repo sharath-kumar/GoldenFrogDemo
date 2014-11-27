@@ -11,7 +11,6 @@ import com.goldenfrog.demo.location.LocationIdentifier;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -89,17 +88,15 @@ public class UIUpdater {
 	        try {
 	        	GoogleMap map = ((MapFragment) invokingActivity.getFragmentManager().findFragmentById(R.id.map)).getMap();
 		        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myCurrentPosition, 18));
-		        
-		        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
-		        
-		        map.addMarker(new MarkerOptions()
-                		.title("Location - " +locationInput)
-		                .snippet("Distance Travelled - " + GenericHelper.getDistanceTravelledFromStartingPosition(locationInput))
-		                .position(myCurrentPosition));
+		        MarkerOptions markerTemp = new MarkerOptions();
+		        markerTemp.title("Location - " +locationInput);
+		        markerTemp.snippet("Distance Travelled - " + LocationUtils.getDistanceTravelledFromStartingPosition(locationInput));
+		        markerTemp.position(myCurrentPosition);
+		        markerTemp.icon(GenericHelper.getMarkerColor());
+		        map.addMarker(markerTemp);
 	        } catch (Exception err) {
 	        	Log.e("UIUpdater.displayOnMap() :: Exception Encountered ", ""+ err.getLocalizedMessage());
 	        }
-
 		}
    }
 	
@@ -113,7 +110,7 @@ public class UIUpdater {
 		notifyUserObj.icon = R.drawable.ic_launcher;
 		notifyUserObj.setLatestEventInfo( GoldenFrogDemoApplication.getContext(), 
 										  "Target Achieved @ Time " + GenericHelper.getCurrentTime(), 
-										  "Distance Travelled @ " + GenericHelper.getDistanceTravelledFromStartingPosition(locationInput), 
+										  "Distance Travelled @ " + LocationUtils.getDistanceTravelledFromStartingPosition(locationInput), 
 										  null);
 
 		notificationManager.notify(0, notifyUserObj); 

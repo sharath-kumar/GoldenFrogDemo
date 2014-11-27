@@ -2,6 +2,7 @@ package com.goldenfrog.demo.services;
 
 import com.goldenfrog.demo.location.LocationIdentifier;
 import com.goldenfrog.demo.utils.GenericHelper;
+import com.goldenfrog.demo.utils.LocationUtils;
 import com.goldenfrog.demo.utils.UIUpdater;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -43,7 +44,7 @@ public class AsyncMyCurrentLocationFinder extends AsyncTask<String, Integer, Str
 		Log.d("AsyncCurrentLocationFinder.onPostExecute() : currentLocation", "" + currentLocation);
 		
 		if(storeInDatabase) {
-			GenericHelper.setStartingPosition(currentLocation);
+			LocationUtils.setStartingPosition(currentLocation);
 		}
 		if(drawOnScreen) {
 			UIUpdater.publish(currentLocation, false);	
