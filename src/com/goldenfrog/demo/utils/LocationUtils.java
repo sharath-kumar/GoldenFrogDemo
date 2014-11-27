@@ -1,5 +1,7 @@
 package com.goldenfrog.demo.utils;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -77,6 +79,16 @@ public class LocationUtils {
 
 		return new LocationIdentifier(latitude, longitude);
 	}
+
+	public static String getDistanceTravelledFromStartingPositionInMiles(LocationIdentifier currentPosition) {
+		Log.i("LocationUtils.getDistanceTravelledFromStartingPositionInMiles()", "Entered");
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
+		
+		double distanceInMiles = (getDistanceBetweenLocations(currentPosition, getStartingPosition())/1609.34) ;
+				
+		return decimalFormat.format(distanceInMiles) + " miles";
+	}
+
 	
 	public static float getDistanceTravelledFromStartingPosition(LocationIdentifier currentPosition) {
 		Log.i("LocationUtils.getDistanceTravelledFromStartingPosition()", "Entered");

@@ -111,8 +111,8 @@ public class UIUpdater {
 		notifyUserObj.icon = R.drawable.ic_launcher;
 		
 		notifyUserObj.setLatestEventInfo( GoldenFrogDemoApplication.getContext(), 
-										  "Goal Achieved" , 
-										  "Distance Travelled = " + LocationUtils.getDistanceTravelledFromStartingPosition(locationInput), 
+										  "Goal Achieved", 
+										  "Distance Travelled = " + LocationUtils.getDistanceTravelledFromStartingPositionInMiles(locationInput), 
 										  null);
 
 		notificationManager.notify(0, notifyUserObj); 
