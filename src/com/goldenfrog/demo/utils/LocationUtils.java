@@ -17,7 +17,7 @@ import com.goldenfrog.demo.location.MyLocationUpdateListener;
 public class LocationUtils {
 	
 	public static void registerForLocationUpdates() {
-		Log.d("LocationUtils.registerForLocationUpdates()", "Entered");
+		Log.i("LocationUtils.registerForLocationUpdates()", "Entered");
 
 		LocationManager locationMgr = (LocationManager) GoldenFrogDemoApplication.getContext().getSystemService(Context.LOCATION_SERVICE);
 		
@@ -36,7 +36,7 @@ public class LocationUtils {
 	}
 
 	public static void registerBroadCastReceiver() {
-		Log.d("LocationUtils.registerBroadCastReceiver()", "Entered");
+		Log.i("LocationUtils.registerBroadCastReceiver()", "Entered");
 
 		MyLocationUpdateBroadcastReceiver locationChangeReceiver = MyLocationUpdateBroadcastReceiver.getInstance();
 		IntentFilter locationChangeIntentFilter = new IntentFilter(Constants.LOCATION_CHANGE_INTENT);
@@ -44,7 +44,7 @@ public class LocationUtils {
 	}
 
 	public static void unregisterForLocationUpdates() {
-		Log.d("LocationUtils.unregisterForLocationUpdates()", "Entered");
+		Log.i("LocationUtils.unregisterForLocationUpdates()", "Entered");
 		
 		LocationManager locationMgr = (LocationManager) GoldenFrogDemoApplication.getContext().getSystemService(Context.LOCATION_SERVICE);
 
@@ -52,12 +52,14 @@ public class LocationUtils {
 	}
 
 	public static void unregisterBroadCastReceiver() {
-		Log.d("LocationUtils.unregisterBroadCastReceiver()", "Entered");
+		Log.i("LocationUtils.unregisterBroadCastReceiver()", "Entered");
 		
 		LocalBroadcastManager.getInstance(GoldenFrogDemoApplication.getContext()).unregisterReceiver(MyLocationUpdateBroadcastReceiver.getInstance());
 	}
 
 	public static void setStartingPosition(LocationIdentifier locationInformationInput) {
+		Log.i("LocationUtils.registerForLocationUpdates()", "Entered");
+		
 	    SharedPreferences settings = GoldenFrogDemoApplication.getContext().getSharedPreferences(Constants.LOCATION_FILE_NAME, 0);
 	    SharedPreferences.Editor editor = settings.edit();
 	    editor.putString("START_LATITUDE", ""+locationInformationInput.getLatitude());
@@ -66,7 +68,9 @@ public class LocationUtils {
 	    editor.apply();
 	}
 	
-	public static LocationIdentifier getStartingPosition() {		
+	public static LocationIdentifier getStartingPosition() {
+		Log.i("LocationUtils.getStartingPosition()", "Entered");
+		
 	    SharedPreferences settings = GoldenFrogDemoApplication.getContext().getSharedPreferences(Constants.LOCATION_FILE_NAME, 0);
 	    double latitude = Double.parseDouble(settings.getString("START_LATITUDE", "0.00"));
 	    double longitude = Double.parseDouble(settings.getString("START_LONGITUDE", "0.00"));
@@ -75,10 +79,14 @@ public class LocationUtils {
 	}
 	
 	public static float getDistanceTravelledFromStartingPosition(LocationIdentifier currentPosition) {
+		Log.i("LocationUtils.getDistanceTravelledFromStartingPosition()", "Entered");
+		
 		return getDistanceBetweenLocations(currentPosition, getStartingPosition());
 	}
 	
 	public static float getDistanceBetweenLocations(LocationIdentifier positionA, LocationIdentifier positionB) {
+		Log.i("LocationUtils.getDistanceBetweenLocations()", "Entered");
+		
 		float returnValue = 0;
 		
 		Location locA = new Location("Point_A");

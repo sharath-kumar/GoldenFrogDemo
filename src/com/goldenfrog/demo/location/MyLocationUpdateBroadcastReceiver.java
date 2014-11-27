@@ -29,10 +29,12 @@ public class MyLocationUpdateBroadcastReceiver extends BroadcastReceiver {
 	}
 
 	public void onReceive(Context context, Intent intent) {
+		Log.i("MyLocationUpdateBroadcastReceiver.onReceive()", "Entered");
+		
 		LocationIdentifier updatedLocationTemp  = (LocationIdentifier) intent.getExtras().getSerializable("UPDATED_LOCATION");
 		
 		float distanceTravelledTemp = LocationUtils.getDistanceTravelledFromStartingPosition(updatedLocationTemp);
-		Log.d("LocationUpdateBroadcastReceiver.onReceive()", "distanceTravelledTemp: " + distanceTravelledTemp);
+		Log.d("MyLocationUpdateBroadcastReceiver.onReceive()", "distanceTravelledTemp: " + distanceTravelledTemp);
 		
 		if(Constants.isDebugMode) {
 			Toast.makeText(	GoldenFrogDemoApplication.getContext().getApplicationContext(),
@@ -42,7 +44,7 @@ public class MyLocationUpdateBroadcastReceiver extends BroadcastReceiver {
 		}
 
 		if(distanceTravelledTemp > Constants.DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION) {
-			Log.d("LocationUpdateBroadcastReceiver.onReceive()", "DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION Exceeded");
+			Log.d("MyLocationUpdateBroadcastReceiver.onReceive()", "DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION Exceeded");
 			
 			if(Constants.isDebugMode) {
 				Toast.makeText(	GoldenFrogDemoApplication.getContext().getApplicationContext(),

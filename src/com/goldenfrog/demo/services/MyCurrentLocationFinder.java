@@ -19,6 +19,8 @@ public class MyCurrentLocationFinder {
 	}
 	
 	public static MyCurrentLocationFinder getInstance() {
+		Log.i("MyCurrentLocationFinder.getInstance()", "Entered");
+		
 		MyCurrentLocationFinder returnValue = null;
 		
 		if(locationFinderInstance!=null) {
@@ -32,7 +34,7 @@ public class MyCurrentLocationFinder {
 	}
 
 	public LocationIdentifier findMyCurrentPosition() {
-		Log.d("MyCurrentLocationFinder.findMyCurrentPosition()", "Entered");
+		Log.i("MyCurrentLocationFinder.findMyCurrentPosition()", "Entered");
 		
 		LocationIdentifier currentLocation = null;		
 		LocationManager locationMgr = null;

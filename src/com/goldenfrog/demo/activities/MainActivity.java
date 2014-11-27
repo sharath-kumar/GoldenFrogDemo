@@ -15,7 +15,7 @@ public class MainActivity extends Activity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.d("MainActivity.onCreate()", "Entered");
+		Log.i("MainActivity.onCreate()", "Entered");
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_main);
@@ -28,28 +28,28 @@ public class MainActivity extends Activity implements Serializable {
 	}
 
 	public void drawInitialLocationOnScreen() {
-		Log.d("MainActivity.drawInitialLocationOnScreen()", "Entered");
+		Log.i("MainActivity.drawInitialLocationOnScreen()", "Entered");
 		
 		AsyncMyCurrentLocationFinder asyncCurrentLocationFinderObj = new AsyncMyCurrentLocationFinder();
 		asyncCurrentLocationFinderObj.processRequest(true, true);
 	}
 
 	protected void onStop() {
-		Log.d("MainActivity.onStop()", "Entered");
+		Log.i("MainActivity.onStop()", "Entered");
 		super.onStop();
 		
 		UIUpdater.setBackgroundMode(true);
 	}
 
 	protected void onResume() {
-		Log.d("MainActivity.onResume()", "Entered");
+		Log.i("MainActivity.onResume()", "Entered");
 		super.onResume();
 		
 		UIUpdater.setBackgroundMode(false);
 	}
 
 	protected void onDestroy() {
-		Log.d("MainActivity.onDestroy()", "Entered");
+		Log.i("MainActivity.onDestroy()", "Entered");
 		super.onDestroy();
 		
 		LocationUtils.unregisterBroadCastReceiver();

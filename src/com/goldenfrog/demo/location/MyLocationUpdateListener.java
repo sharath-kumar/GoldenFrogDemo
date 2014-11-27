@@ -25,12 +25,10 @@ public class MyLocationUpdateListener implements LocationListener
 	}
 	
     public void onLocationChanged(final Location loc) {
-        Log.d("MyLocationListener.onLocationChanged()", "Entered");
+        Log.i("MyLocationUpdateListener.onLocationChanged()", "Entered");
 
         LocationIdentifier locationTempObj = new LocationIdentifier(loc.getLatitude(), loc.getLongitude());
-        if(Constants.isDebugMode) {
-        	Log.d("MyLocationListener.onLocationChanged() ::: Updated Location", ""+loc.toString());
-        }
+        Log.d("MyLocationUpdateListener.onLocationChanged() ::: Updated Location", ""+loc.toString());
         
         broadcastLocationChange(locationTempObj);
     }
@@ -48,7 +46,7 @@ public class MyLocationUpdateListener implements LocationListener
 	}
 	
 	public void broadcastLocationChange(LocationIdentifier newLocationInput) {
-		Log.d("MyLocationListener.broadcastLocationChange()", "Entered");
+		Log.i("MyLocationUpdateListener.broadcastLocationChange()", "Entered");
 		
 		Intent intent = new Intent();
 		intent.setAction(Constants.LOCATION_CHANGE_INTENT);

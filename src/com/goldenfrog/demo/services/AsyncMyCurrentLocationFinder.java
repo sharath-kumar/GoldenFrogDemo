@@ -14,7 +14,7 @@ public class AsyncMyCurrentLocationFinder extends AsyncTask<String, Integer, Str
 	boolean storeInDatabase = false;
 
 	public void processRequest(boolean drawOnScreenInput, boolean storeInDatabaseInput) {
-		Log.d("AsyncCurrentLocationFinder.processRequest()", "Entered");
+		Log.i("AsyncMyCurrentLocationFinder.processRequest()", "Entered");
 		
 		drawOnScreen = drawOnScreenInput;
 		storeInDatabase = storeInDatabaseInput;
@@ -23,7 +23,8 @@ public class AsyncMyCurrentLocationFinder extends AsyncTask<String, Integer, Str
 	}
 	
 	public void findMyCurrentPosition() {
-		Log.d("AsyncCurrentLocationFinder.findMyCurrentPosition()", "Entered");
+		Log.i("AsyncMyCurrentLocationFinder.findMyCurrentPosition()", "Entered");
+		
 		currentLocation = MyCurrentLocationFinder.getInstance().findMyCurrentPosition();   
 	}
 	
@@ -33,15 +34,16 @@ public class AsyncMyCurrentLocationFinder extends AsyncTask<String, Integer, Str
 				findMyCurrentPosition();	
 			}
 		} catch(Exception err) {
-			Log.e("AsyncCurrentLocationFinder.doInBackground()", "" + err.getLocalizedMessage());
+			Log.e("AsyncMyCurrentLocationFinder.doInBackground()", "" + err.getLocalizedMessage());
 		}
 		
 		return "";
 	}
 
 	protected void onPostExecute(String result) {
-		Log.d("AsyncCurrentLocationFinder.onPostExecute()", "Entered");
-		Log.d("AsyncCurrentLocationFinder.onPostExecute() : currentLocation", "" + currentLocation);
+		Log.i("AsyncMyCurrentLocationFinder.onPostExecute()", "Entered");
+		
+		Log.d("AsyncMyCurrentLocationFinder.onPostExecute() : currentLocation", "" + currentLocation);
 		
 		if(storeInDatabase) {
 			LocationUtils.setStartingPosition(currentLocation);

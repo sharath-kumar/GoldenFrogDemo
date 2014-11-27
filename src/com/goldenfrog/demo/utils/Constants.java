@@ -9,13 +9,13 @@ public interface Constants {
 	String LOCATION_FILE_NAME = "LocationInformation";
 	String LOCATION_CHANGE_INTENT = "com.goldenfrog.demo.LOCATION_CHANGED";
 	
-//	int MINIMUM_TIME_INTERVAL_FOR_LOCATION_POLLING = 60000; // In Milliseconds
-//	int MINIMUM_DISTANCE_INTERVAL_FOR_LOCATION_POLLING = 100; // In Meters
-//	float DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION = (float) 1609.34 ; // 1 Mile => 1609.34 Meters
+	int MINIMUM_TIME_INTERVAL_FOR_LOCATION_POLLING = 30000; // In Milliseconds
+	int MINIMUM_DISTANCE_INTERVAL_FOR_LOCATION_POLLING = 100; // In Meters
+	float DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION = (float) 1609.34 ; // 1 Mile => 1609.34 Meters
 	
-	int MINIMUM_TIME_INTERVAL_FOR_LOCATION_POLLING = 100; // In Milliseconds
-	int MINIMUM_DISTANCE_INTERVAL_FOR_LOCATION_POLLING = 0; // In Meters	
-	float DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION = (float) 1.00 ;
+//	int MINIMUM_TIME_INTERVAL_FOR_LOCATION_POLLING = 100; // In Milliseconds
+//	int MINIMUM_DISTANCE_INTERVAL_FOR_LOCATION_POLLING = 0; // In Meters	
+//	float DISTANCE_TO_TRAVEL_BEFORE_NOTIFICATION = (float) 1.00 ; // In Meters
 	
 	BitmapDescriptor ODD_LOCATION_PIN_COLOR = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE);
 	BitmapDescriptor EVEN_LOCATION_PIN_COLOR = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);

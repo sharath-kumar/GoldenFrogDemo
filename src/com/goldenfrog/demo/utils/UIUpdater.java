@@ -61,7 +61,8 @@ public class UIUpdater {
 	}
 	
 	public static void publish(LocationIdentifier locationInput, boolean isBackgroundModeInput) {
-		Log.d("UIUpdater.publish()", "Entered");
+		Log.i("UIUpdater.publish()", "Entered");
+		
 		Log.d("UIUpdater.publish() ::: locationInput, isBackgroundMode", "(" + locationInput + ", " + isBackgroundMode + ")");
 			
 		if(isBackgroundModeInput && isAllowUIUpdates()) {
@@ -73,7 +74,7 @@ public class UIUpdater {
 	}
 	
 	private static void displayOnMap(LocationIdentifier locationInput) {
-		Log.d("UIUpdater.displayOnMap()", "Entered");
+		Log.i("UIUpdater.displayOnMap()", "Entered");
 				
 		if(invokingActivity==null) {
 			init();
@@ -101,16 +102,17 @@ public class UIUpdater {
    }
 	
 	private static void displayNotification(LocationIdentifier locationInput) {
-		Log.d("UIUpdater.displayNotification()", "Entered");
+		Log.i("UIUpdater.displayNotification()", "Entered");
 
 		NotificationManager notificationManager = (NotificationManager) GoldenFrogDemoApplication.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 				
 
 		Notification notifyUserObj = new Notification();
 		notifyUserObj.icon = R.drawable.ic_launcher;
+		
 		notifyUserObj.setLatestEventInfo( GoldenFrogDemoApplication.getContext(), 
-										  "Target Achieved @ Time " + GenericHelper.getCurrentTime(), 
-										  "Distance Travelled @ " + LocationUtils.getDistanceTravelledFromStartingPosition(locationInput), 
+										  "Goal Achieved" , 
+										  "Distance Travelled = " + LocationUtils.getDistanceTravelledFromStartingPosition(locationInput), 
 										  null);
 
 		notificationManager.notify(0, notifyUserObj); 

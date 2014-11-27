@@ -32,7 +32,7 @@ public class LocationIdentifier implements Serializable {
 	}
 	
 	public String toString() {
-		Log.d("LocationIdentifier.toString() ::: (LAT, LON)", "(" + getLatitude() + ", " + getLongitude() + ")");
+		Log.i("LocationIdentifier.toString() ::: (LAT, LON)", "(" + getLatitude() + ", " + getLongitude() + ")");
 		
 		return "(LAT, LON) => (" + getLatitude() + ", " + getLongitude() + ")";
 	}

@@ -22,6 +22,8 @@ public class GenericHelper {
 	private static int markerCounter = 0;
 
 	public static boolean isNetworkConnected() {
+		Log.i("GenericHelper.isNetworkConnected()", "Entered");
+		
 		boolean returnValue = false;
 		
 		connMgr = (ConnectivityManager) GoldenFrogDemoApplication.getContext().getSystemService(Activity.CONNECTIVITY_SERVICE);
@@ -37,9 +39,10 @@ public class GenericHelper {
 	}
 	
 	public static void displayErrorMessage(Activity invokingActivity, String messageToDisplay) {
-		Log.d("AsyncHttpRequest.displayErrorMessage() :: messageToDisplay", messageToDisplay);
+		Log.i("GenericHelper.displayErrorMessage()", "Entered");
 		
-        AlertDialog.Builder errorAlertMessage  = new AlertDialog.Builder(invokingActivity);
+		Log.d("GenericHelper.displayErrorMessage() :: messageToDisplay", messageToDisplay);
+		AlertDialog.Builder errorAlertMessage  = new AlertDialog.Builder(invokingActivity);
 
         errorAlertMessage.setMessage(messageToDisplay);
         errorAlertMessage.setTitle("Ooopsie!!!");
@@ -56,16 +59,22 @@ public class GenericHelper {
 	}
 	
 	public static String getCurrentTime() {
+		Log.i("GenericHelper.getCurrentTime()", "Entered");
+		
 		String currentDateTimeFormattedAsString = simpleDateFormatObj.format(calendarObj.getTime());
 		
 		return currentDateTimeFormattedAsString;
 	}
 	
 	public static void forcefullyExitApplication() {
+		Log.i("GenericHelper.forcefullyExitApplication()", "Entered");
+		
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 	
 	public static BitmapDescriptor getMarkerColor() {
+		Log.i("GenericHelper.getMarkerColor()", "Entered");
+		
 		BitmapDescriptor returnValue;
 		returnValue = Constants.ODD_LOCATION_PIN_COLOR;
 		
